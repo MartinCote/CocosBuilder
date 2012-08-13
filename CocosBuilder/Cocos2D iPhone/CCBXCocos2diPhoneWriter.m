@@ -249,7 +249,7 @@
 }
 
 - (void) writeProperty:(id) prop type:(NSString*)type name:(NSString*)name platform:(NSString*)platform
-{
+{  
     int typeId = [self propTypeIdForName:type];
     NSAssert(typeId >= 0, @"ccbi export: Trying to write unkown property type %@",type);
     
@@ -726,13 +726,14 @@
     for (int i = 0; i < [props count]; i++)
     {
         NSDictionary* prop = [props objectAtIndex:i];
-        
+              
         id value = [prop objectForKey:@"value"];
         NSString* type = [prop objectForKey:@"type"];
         NSString* name = [prop objectForKey:@"name"];
         id baseValue = [prop objectForKey:@"baseValue"];
         
-        if (baseValue)
+        //if (baseValue)
+        if( NO ) // SKIP BASE VALUE FOR NOW
         {
             // We need to transform the base value to a normal value (base values override normal values)
             if ([type isEqualToString:@"Position"])
